@@ -28,11 +28,12 @@
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
       overflow-y:auto;
+      font-size:16px;
+      line-height:1.6;
     }
 
     /* Layout */
     .wrap{display:grid; grid-template-columns: 360px 1fr; gap:36px; max-width:1200px; margin:40px auto; padding:0 20px;}
-    @media (max-width:980px){ .wrap{grid-template-columns:1fr; gap:20px; margin:18px auto;} }
 
     /* Sidebar (left) */
     .side{
@@ -48,124 +49,195 @@
       width:120px; height:120px; border-radius:16px; background:linear-gradient(135deg,var(--accent-3),var(--accent)); display:block;
       box-shadow: 0 8px 28px rgba(0,0,0,0.6); margin-bottom:18px;
     }
-    .name{font-family:"Playfair Display", serif; font-size:26px; margin:0 0 6px;}
-    .role{color:var(--muted); font-weight:600; margin-bottom:14px;}
-    .bio{color:var(--muted); font-size:14px; line-height:1.5; margin-bottom:18px;}
+    .name{font-family:"Playfair Display", serif; font-size:26px; margin:0 0 6px; font-weight:700;}
+    .role{color:var(--muted); font-weight:600; margin-bottom:14px; font-size:16px;}
+    .bio{color:var(--muted); font-size:15px; line-height:1.6; margin-bottom:18px;}
     .meta{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px}
-    .pill{background:var(--glass); padding:8px 10px; border-radius:999px; color:var(--muted); font-weight:700; font-size:13px; border:1px solid rgba(255,255,255,0.03)}
+    .pill{background:var(--glass); padding:8px 12px; border-radius:999px; color:var(--muted); font-weight:600; font-size:13px; border:1px solid rgba(255,255,255,0.03)}
 
     .socials{display:flex; gap:10px; margin-top:6px}
-    .socials a{display:inline-grid; place-items:center; width:40px; height:40px; border-radius:10px; text-decoration:none; color:var(--text); background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03)}
+    .socials a{display:inline-grid; place-items:center; width:40px; height:40px; border-radius:10px; text-decoration:none; color:var(--text); background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); font-size:12px; font-weight:600;}
 
     /* Right content */
-    .content{display:flex; flex-direction:column; gap:22px}
+    .content{display:flex; flex-direction:column; gap:24px}
     .hero{
       background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
-      border-radius:24px; padding:28px; border:1px solid rgba(255,255,255,0.04);
-      display:flex; gap:20px; align-items:center; justify-content:space-between;
+      border-radius:24px; padding:32px; border:1px solid rgba(255,255,255,0.04);
+      display:flex; gap:24px; align-items:center; justify-content:space-between;
     }
     .intro{max-width:62%}
-    .kicker{display:inline-block; padding:6px 12px; border-radius:999px; background:rgba(255,255,255,0.03); font-weight:700; color:var(--muted); margin-bottom:12px; font-size:13px}
-    h1{font-family:"Playfair Display", serif; font-size:40px; margin:0; line-height:1}
-    p.lead{color:var(--muted); margin-top:10px; font-size:15px; line-height:1.6}
-    .hero-cta{display:flex; gap:12px; margin-top:18px}
-    .btn{padding:10px 14px; border-radius:12px; border:1px solid rgba(255,255,255,0.04); background:rgba(255,255,255,0.03); color:var(--text); font-weight:700; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; justify-content:center}
+    .kicker{display:inline-block; padding:8px 16px; border-radius:999px; background:rgba(255,255,255,0.03); font-weight:600; color:var(--muted); margin-bottom:16px; font-size:14px}
+    h1{font-family:"Playfair Display", serif; font-size:42px; margin:0; line-height:1.1; font-weight:700;}
+    h2{font-family:"Playfair Display", serif; font-size:28px; margin:0; line-height:1.2; font-weight:600;}
+    p.lead{color:var(--muted); margin-top:12px; font-size:16px; line-height:1.7}
+    .hero-cta{display:flex; gap:12px; margin-top:20px}
+    .btn{padding:12px 18px; border-radius:12px; border:1px solid rgba(255,255,255,0.04); background:rgba(255,255,255,0.03); color:var(--text); font-weight:600; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; font-size:14px;}
     .btn.primary{background:linear-gradient(90deg,var(--accent) 0%, var(--accent-3) 100%); color:#0b0b0d; border:transparent; box-shadow: 0 10px 30px rgba(122,107,255,0.12)}
-    .stats{display:flex; gap:14px; margin-top:14px}
-    .stat{background:rgba(255,255,255,0.02); padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,0.03); min-width:110px}
-    .stat b{display:block; font-size:18px}
+    .stats{display:flex; gap:14px; margin-top:16px}
+    .stat{background:rgba(255,255,255,0.02); padding:14px 16px; border-radius:12px; border:1px solid rgba(255,255,255,0.03); min-width:120px; text-align:center;}
+    .stat b{display:block; font-size:20px; margin-bottom:4px;}
+    .stat span{font-size:13px;}
 
     /* Projects & other blocks */
-    .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
-    @media (max-width:1100px){ .grid{grid-template-columns:repeat(2,1fr)}}
-    @media (max-width:720px){ .grid{grid-template-columns:1fr} }
-    /* Extra Mobile Optimizations */
-@media (max-width: 720px) {
-  h1 {
-    font-size: 28px;
-    line-height: 1.2;
-  }
-  .name {
-    font-size: 22px;
-  }
-  .role {
-    font-size: 14px;
-  }
-  p.lead {
-    font-size: 14px;
-  }
-
-  /* Hero layout stack */
-  .hero {
-    flex-direction: column;
-    text-align: center;
-  }
-  .hero .intro {
-    max-width: 100%;
-  }
-  .hero-cta {
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .hero > div:last-child {
-    width: 100% !important;
-    margin-top: 16px;
-  }
-
-  /* Sidebar adjustments */
-  .side {
-    padding: 20px;
-    text-align: center;
-  }
-  .side .avatar {
-    margin: 0 auto 12px;
-  }
-  .side .meta,
-  .side .socials {
-    justify-content: center;
-  }
-
-  /* Contact section stack */
-  .contact {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .contact > div {
-    width: 100% !important;
-    margin-top: 16px;
-  }
-
-  /* Footer */
-  footer {
-    font-size: 12px;
-    padding: 12px;
-  }
-}
-
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); padding:16px; border-radius:12px; border:1px solid rgba(255,255,255,0.03); min-height:120px; display:flex; flex-direction:column; gap:10px; transition:transform .28s ease, box-shadow .28s ease}
+    .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); padding:20px; border-radius:14px; border:1px solid rgba(255,255,255,0.03); min-height:140px; display:flex; flex-direction:column; gap:12px; transition:transform .28s ease, box-shadow .28s ease}
     .card:hover{transform:translateY(-8px); box-shadow:0 20px 50px rgba(10,10,12,0.6)}
-    .tag{font-size:12px; color:var(--muted); font-weight:700; background:rgba(255,255,255,0.02); padding:6px 9px; border-radius:999px; display:inline-block}
-    .proj-title{font-weight:700; margin:6px 0 0; font-size:16px}
-    .proj-desc{color:var(--muted); font-size:13px; margin-top:6px; flex:1}
+    .tag{font-size:12px; color:var(--muted); font-weight:600; background:rgba(255,255,255,0.02); padding:6px 10px; border-radius:999px; display:inline-block}
+    .proj-title{font-weight:700; margin:8px 0 0; font-size:17px}
+    .proj-desc{color:var(--muted); font-size:14px; margin-top:8px; flex:1; line-height:1.5;}
 
     /* Experience timeline */
-    .timeline{display:flex; flex-direction:column; gap:12px}
-    .t-item{display:flex; gap:14px; align-items:flex-start; background:rgba(255,255,255,0.02); padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,0.03)}
-    .t-item .dot{width:12px; height:12px; border-radius:50%; background:var(--accent); margin-top:6px}
+    .timeline{display:flex; flex-direction:column; gap:14px}
+    .t-item{display:flex; gap:16px; align-items:flex-start; background:rgba(255,255,255,0.02); padding:16px; border-radius:12px; border:1px solid rgba(255,255,255,0.03)}
+    .t-item .dot{width:12px; height:12px; border-radius:50%; background:var(--accent); margin-top:8px; flex-shrink:0;}
+    .t-item div:last-child{flex:1;}
+    .t-item .job-title{font-weight:700; font-size:16px; margin-bottom:4px;}
+    .t-item .job-period{color:var(--muted); font-size:13px; margin-bottom:8px;}
+    .t-item .job-desc{color:var(--muted); font-size:14px; line-height:1.5;}
 
     /* Contact */
-    .contact{display:flex; gap:12px; align-items:center; justify-content:space-between; padding:14px; border-radius:14px; background:rgba(255,255,255,0.01); border:1px solid rgba(255,255,255,0.03)}
-    .contact form{flex:1; display:flex; gap:8px; flex-direction:column}
-    input, textarea{background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--text); padding:10px 12px; border-radius:10px; outline:none}
+    .contact{display:flex; gap:20px; align-items:flex-start; justify-content:space-between; padding:20px; border-radius:14px; background:rgba(255,255,255,0.01); border:1px solid rgba(255,255,255,0.03)}
+    .contact form{flex:1; display:flex; gap:10px; flex-direction:column}
+    input, textarea{background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--text); padding:12px 14px; border-radius:10px; outline:none; font-size:14px;}
     input:focus, textarea:focus{box-shadow:0 0 0 4px rgba(122,107,255,0.08); border-color:rgba(122,107,255,0.22)}
+    .contact-info{width:320px; min-width:240px;}
+    .contact-card{padding:18px; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); border:1px solid rgba(255,255,255,0.03)}
+    .contact-card .contact-title{font-weight:700; font-size:16px; margin-bottom:8px;}
+    .contact-card .contact-email{color:var(--muted); font-size:14px; margin-bottom:12px; word-break:break-all;}
+    .contact-card .contact-desc{color:var(--muted); font-size:13px; line-height:1.5; margin-bottom:12px;}
+
+    /* Section headers */
+    .section-header{display:flex; justify-content:space-between; align-items:end; gap:12px; margin-bottom:16px}
+    .section-accent{height:10px; width:46px; border-radius:999px; background:linear-gradient(90deg,var(--accent),var(--accent-3)); margin-bottom:10px}
+    .section-subtitle{color:var(--muted); margin-top:8px; font-size:14px;}
 
     /* Small helpers */
-    .muted{color:var(--muted); font-size:13px}
-    footer{max-width:1200px;margin:26px auto;color:var(--muted); text-align:center; padding:0 20px; font-size:13px}
+    .muted{color:var(--muted); font-size:14px}
+    footer{max-width:1200px;margin:32px auto;color:var(--muted); text-align:center; padding:0 20px; font-size:13px}
 
     /* subtle motion */
     .fade-in{opacity:0; transform:translateY(12px); transition:opacity .7s ease, transform .7s ease}
     .fade-in.visible{opacity:1; transform:none}
+
+    /* MOBILE RESPONSIVE STYLES */
+    @media (max-width:980px){ 
+      .wrap{grid-template-columns:1fr; gap:24px; margin:20px auto; padding:0 16px;} 
+      
+      .hero{
+        flex-direction:column; 
+        text-align:center; 
+        gap:20px; 
+        padding:24px;
+      }
+      .intro{max-width:100%;}
+      .hero > div:last-child{
+        width:100% !important; 
+        margin-top:0;
+      }
+      
+      .grid{grid-template-columns:repeat(2,1fr); gap:12px;}
+      
+      .contact{
+        flex-direction:column; 
+        gap:16px;
+      }
+      .contact-info{
+        width:100%;
+      }
+    }
+
+    @media (max-width:720px){ 
+      body{font-size:15px;}
+      .wrap{padding:0 12px; gap:20px; margin:16px auto;}
+      
+      /* Typography scaling for mobile */
+      h1 {font-size:32px; line-height:1.2;}
+      h2 {font-size:24px;}
+      .name {font-size:24px;}
+      .role {font-size:15px;}
+      p.lead {font-size:15px; line-height:1.6;}
+      .kicker{font-size:13px; padding:6px 12px;}
+      
+      /* Hero adjustments */
+      .hero {padding:20px; gap:16px;}
+      .hero-cta {justify-content:center; flex-wrap:wrap; gap:8px;}
+      .btn{padding:10px 14px; font-size:13px;}
+      
+      /* Stats grid for mobile */
+      .stats {
+        display:grid; 
+        grid-template-columns:repeat(3,1fr); 
+        gap:8px; 
+        margin-top:12px;
+      }
+      .stat{
+        min-width:auto; 
+        padding:10px 8px;
+      }
+      .stat b{font-size:16px;}
+      .stat span{font-size:11px;}
+      
+      /* Sidebar mobile adjustments */
+      .side {
+        padding:20px; 
+        text-align:center; 
+        min-height:auto;
+      }
+      .avatar {
+        width:100px; 
+        height:100px; 
+        margin:0 auto 12px;
+      }
+      .bio{font-size:14px; text-align:center;}
+      .meta, .socials {justify-content:center;}
+      .pill{font-size:12px; padding:6px 10px;}
+      
+      /* Projects grid - single column on small mobile */
+      .grid{grid-template-columns:1fr; gap:12px;}
+      .card{padding:16px; min-height:120px;}
+      .proj-title{font-size:16px;}
+      .proj-desc{font-size:13px;}
+      
+      /* Timeline mobile */
+      .t-item{padding:12px; gap:12px;}
+      .t-item .job-title{font-size:15px;}
+      .t-item .job-desc{font-size:13px;}
+      
+      /* Contact form mobile */
+      .contact{padding:16px;}
+      input, textarea{padding:10px 12px; font-size:15px;}
+      .contact-card{padding:14px;}
+      .contact-card .contact-title{font-size:15px;}
+      .contact-card .contact-email{font-size:13px;}
+      .contact-card .contact-desc{font-size:12px;}
+      
+      /* Section headers mobile */
+      .section-header{margin-bottom:12px;}
+      .section-subtitle{font-size:13px;}
+      
+      /* Footer */
+      footer {font-size:12px; padding:0 12px; margin:24px auto;}
+    }
+
+    /* Extra small mobile devices */
+    @media (max-width:480px){
+      body{font-size:14px;}
+      h1{font-size:28px;}
+      h2{font-size:22px;}
+      .name{font-size:22px;}
+      .hero{padding:16px;}
+      .side{padding:16px;}
+      .card{padding:14px;}
+      .t-item{padding:10px;}
+      .contact{padding:12px;}
+      
+      .stats{gap:6px;}
+      .stat{padding:8px 6px;}
+      .stat b{font-size:14px;}
+      .stat span{font-size:10px;}
+      
+      .btn{padding:8px 12px; font-size:12px;}
+    }
   </style>
 </head>
 <body>
@@ -174,16 +246,15 @@
     <!-- SIDEBAR -->
     <aside class="side fade-in" id="side">
       <div style="display:flex; gap:16px; align-items:center">
-
         <div>
           <div class="name">VIKAS SHARMA</div>
           <div class="role">Software Developer</div>
-          <div class="muted">Android • WED </div>
+          <div class="muted">Android • Web Development</div>
         </div>
       </div>
 
       <p class="bio" style="margin-top:16px">
-        I build performant Android apps and full-stack web apps. Focus on clean architecture, practical UI, and shipping working features fast.
+        I build performant Android apps and full-stack web applications. Focus on clean architecture, practical UI, and shipping working features fast.
       </p>
 
       <div class="meta">
@@ -191,7 +262,7 @@
         <div class="pill">Open to work</div>
       </div>
 
-      <div style="margin-top:10px">
+      <div style="margin-top:16px">
         <div class="muted" style="margin-bottom:8px">Quick links</div>
         <div style="display:flex; gap:8px; flex-wrap:wrap">
           <a class="pill" href="#projects">Projects</a>
@@ -205,21 +276,20 @@
         <div style="display:flex; gap:8px; flex-wrap:wrap">
           <div class="pill">Kotlin</div>
           <div class="pill">React</div>
-          <div class="pill">Node</div>
+          <div class="pill">Node.js</div>
           <div class="pill">MongoDB</div>
-          <div class="pill">Codelginter</div>
+          <div class="pill">CodeIgniter</div>
         </div>
       </div>
 
       <div style="margin-top:20px">
-  <div class="muted">Connect</div>
-  <div class="socials" style="margin-top:8px">
-    <a title="GitHub" href="https://github.com/sharmavikaskumar" aria-label="GitHub" target="_blank">GH</a>
-    <a title="LinkedIn" href="https://www.linkedin.com/in/vikas-kumar-sharma--dev" aria-label="LinkedIn" target="_blank">in</a>
-    <a title="Email" href="mailto:sharmavikaskumar95@gmail.com" aria-label="Email">@</a>
-  </div>
-</div>
-
+        <div class="muted" style="margin-bottom:8px">Connect</div>
+        <div class="socials">
+          <a title="GitHub" href="https://github.com/sharmavikaskumar" aria-label="GitHub" target="_blank">GH</a>
+          <a title="LinkedIn" href="https://www.linkedin.com/in/vikas-kumar-sharma--dev" aria-label="LinkedIn" target="_blank">IN</a>
+          <a title="Email" href="mailto:sharmavikaskumar95@gmail.com" aria-label="Email">@</a>
+        </div>
+      </div>
     </aside>
 
     <!-- MAIN CONTENT -->
@@ -230,14 +300,14 @@
         <div class="intro">
           <div class="kicker">Portfolio • Designer & Developer</div>
           <h1>Design-forward web & Android experiences</h1>
-          <p class="lead">I craft clean interfaces and robust backends. Recent work includes an Attendance Management System (MERN), AI Study Buddy (Android/Kotlin), and production-ready API integrations.</p>
+          <p class="lead">I craft clean interfaces and robust backends. Recent work includes an Attendance Management System (PHP), Blog Web App (CodeIgniter), and production-ready Android applications.</p>
 
           <div class="hero-cta">
             <a class="btn primary" href="#projects">See Projects</a>
             <a class="btn" href="#contact">Hire Me</a>
           </div>
 
-          <div class="stats" style="margin-top:16px">
+          <div class="stats">
             <div class="stat"><b>5+</b><span class="muted">Featured projects</span></div>
             <div class="stat"><b>WEB</b><span class="muted">Full stack</span></div>
             <div class="stat"><b>Kotlin</b><span class="muted">Android apps</span></div>
@@ -259,11 +329,11 @@
 
       <!-- PROJECTS -->
       <section id="projects" class="fade-in">
-        <div style="display:flex; justify-content:space-between; align-items:end; gap:12px; margin-bottom:12px">
+        <div class="section-header">
           <div>
-            <div style="height:10px; width:46px; border-radius:999px; background:linear-gradient(90deg,var(--accent),var(--accent-3)); margin-bottom:8px"></div>
-            <h2 style="margin:0">Featured Projects</h2>
-            <div class="muted" style="margin-top:6px">Selected work — Web, Android, Kotlin</div>
+            <div class="section-accent"></div>
+            <h2>Featured Projects</h2>
+            <div class="section-subtitle">Selected work — Web, Android, Kotlin</div>
           </div>
           <div><a class="btn" href="#">View all</a></div>
         </div>
@@ -272,38 +342,30 @@
           <article class="card">
             <span class="tag">PHP • Full-stack</span>
             <div class="proj-title">Attendance Management System</div>
-            <div class="proj-desc">Students & teachers manage attendance, fees and materials. Token auth, responsive .</div>
+            <div class="proj-desc">Students & teachers manage attendance, fees and materials. Token authentication with responsive design.</div>
           </article>
           
-           <article class="card">
-             <span class="tag">CodeIgniter • Full-stack</span>
-               <div class="proj-title">Blog Web App</div>
-                <div class="proj-desc">
-                        A feature-rich blogging platform built with CodeIgniter. Users can create, edit, and manage posts with authentication, categories, and a responsive UI.
-  </div>
-</article>
- 
+          <article class="card">
+            <span class="tag">CodeIgniter • Full-stack</span>
+            <div class="proj-title">Blog Web App</div>
+            <div class="proj-desc">A feature-rich blogging platform built with CodeIgniter. Users can create, edit, and manage posts with authentication, categories, and responsive UI.</div>
+          </article>
           
-<article class="card">
-  <span class="tag">Kotlin • Android</span>
-  <div class="proj-title">Calculator App</div>
-  <div class="proj-desc">
-    A clean and responsive calculator built in Android Studio using Kotlin. 
-    Supports basic arithmetic operations with a custom UI layout for a smooth user experience.
-  </div>
-</article>
-
-
+          <article class="card">
+            <span class="tag">Kotlin • Android</span>
+            <div class="proj-title">Calculator App</div>
+            <div class="proj-desc">A clean and responsive calculator built in Android Studio using Kotlin. Supports basic arithmetic operations with custom UI layout.</div>
+          </article>
         </div>
       </section>
 
       <!-- EXPERIENCE -->
       <section id="experience" class="fade-in">
-        <div style="display:flex; justify-content:space-between; align-items:end; gap:12px; margin-bottom:12px">
+        <div class="section-header">
           <div>
-            <div style="height:10px; width:46px; border-radius:999px; background:linear-gradient(90deg,var(--accent),var(--accent-3)); margin-bottom:8px"></div>
-            <h2 style="margin:0">Experience</h2>
-            <div class="muted" style="margin-top:6px">Work & education</div>
+            <div class="section-accent"></div>
+            <h2>Experience</h2>
+            <div class="section-subtitle">Work & education</div>
           </div>
         </div>
 
@@ -311,19 +373,18 @@
           <div class="t-item">
             <div class="dot" aria-hidden="true"></div>
             <div>
-              <div style="font-weight:700">JR Software Developer — BARC</div>
-              <div class="muted">2025 — PRESIDENT</div>
-              <div class="muted" style="margin-top:6px"> Working as a Full-Stack Developer using the CodeIgniter framework. 
-           Building and maintaining scalable web applications with APIs, authentication, and responsive UIs..</div>
+              <div class="job-title">JR Software Developer — BARC</div>
+              <div class="job-period">2025 — PRESENT</div>
+              <div class="job-desc">Working as a Full-Stack Developer using the CodeIgniter framework. Building and maintaining scalable web applications with APIs, authentication, and responsive UIs.</div>
             </div>
           </div>
 
           <div class="t-item">
             <div class="dot" aria-hidden="true"></div>
             <div>
-              <div style="font-weight:700">BSc in IT</div>
-              <div class="muted">Graduated</div>
-              <div class="muted" style="margin-top:6px">Fundamentals: data structures, DBMS, networking and project management.</div>
+              <div class="job-title">BSc in Information Technology</div>
+              <div class="job-period">Graduated</div>
+              <div class="job-desc">Fundamentals: data structures, DBMS, networking and project management.</div>
             </div>
           </div>
         </div>
@@ -331,16 +392,16 @@
 
       <!-- CONTACT -->
       <section id="contact" class="fade-in">
-        <div style="display:flex; justify-content:space-between; align-items:end; gap:12px; margin-bottom:12px">
+        <div class="section-header">
           <div>
-            <div style="height:10px; width:46px; border-radius:999px; background:linear-gradient(90deg,var(--accent),var(--accent-3)); margin-bottom:8px"></div>
-            <h2 style="margin:0">Get in touch</h2>
-            <div class="muted" style="margin-top:6px">Open to Android & full-stack roles, internships, and freelance</div>
+            <div class="section-accent"></div>
+            <h2>Get in touch</h2>
+            <div class="section-subtitle">Open to Android & full-stack roles, internships, and freelance</div>
           </div>
         </div>
 
         <div class="contact">
-          <form id="contactForm" onsubmit="sendMessage(event)" style="flex:1">
+          <form id="contactForm" onsubmit="sendMessage(event)">
             <input id="name" name="name" placeholder="Your name" required />
             <input id="email" name="email" type="email" placeholder="Email address" required />
             <textarea id="message" name="message" rows="4" placeholder="Tell me about your project" required></textarea>
@@ -350,14 +411,14 @@
             </div>
           </form>
 
-          <div style="width:320px; min-width:220px">
-            <div style="padding:14px; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); border:1px solid rgba(255,255,255,0.03)">
-              <div style="font-weight:700">Contact</div>
-              <div class="muted" style="margin-top:8px">sharmavikaskumar95@gmail.com</div>
-              <div class="muted" style="margin-top:12px">Based in India (IST). Available for remote & onsite roles.</div>
+          <div class="contact-info">
+            <div class="contact-card">
+              <div class="contact-title">Contact</div>
+              <div class="contact-email">sharmavikaskumar95@gmail.com</div>
+              <div class="contact-desc">Based in India (IST). Available for remote & onsite roles.</div>
               <div style="display:flex; gap:8px; margin-top:12px">
-                <a class="btn" href="#" aria-label="GitHub">GitHub</a>
-                <a class="btn" href="https://www.linkedin.com/in/vikas-kumar-sharma--dev" aria-label="LinkedIn">LinkedIn</a>
+                <a class="btn" href="https://github.com/sharmavikaskumar" target="_blank" aria-label="GitHub">GitHub</a>
+                <a class="btn" href="https://www.linkedin.com/in/vikas-kumar-sharma--dev" target="_blank" aria-label="LinkedIn">LinkedIn</a>
               </div>
             </div>
           </div>
@@ -367,7 +428,7 @@
     </main>
   </div>
 
-  <footer>© <span id="yr"></span> Vikas Sharma</footer>
+  <footer>© <span id="yr"></span> Vikas Sharma. All rights reserved.</footer>
 
   <script>
     // small helpers: reveal by intersection
@@ -384,20 +445,19 @@
       els.forEach(el=>io.observe(el));
     })();
 
-    // Contact demo - FIXED: use backticks for template literal
+    // Contact demo
     function sendMessage(e){
       e.preventDefault();
       const f = e.target;
       const name = f.name.value.trim();
       const email = f.email.value.trim();
-      // Correctly use template literal (backticks)
       alert(`Thanks ${name}! I'll reach out at ${email} — (demo only).`);
       f.reset();
     }
     window.sendMessage = sendMessage;
 
     function copyEmail(){
-      const email = 'vikas@example.com';
+      const email = 'sharmavikaskumar95@gmail.com';
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(email).then(()=>{
           alert('Email copied to clipboard!');
@@ -405,12 +465,11 @@
           prompt('Copy email', email);
         });
       } else {
-        // fallback
         prompt('Copy email', email);
       }
     }
 
-    // prevent page jump for links with href="#" (small UX improvement)
+    // prevent page jump for links with href="#"
     document.addEventListener('click', function (ev) {
       const t = ev.target.closest && ev.target.closest('a[href="#"]');
       if (t) {
