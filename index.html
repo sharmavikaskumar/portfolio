@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Vikas Sharma — Portfolio</title>
   <meta name="description" content="Portfolio of Vikas Sharma — Software Developer. Android • MERN • Kotlin" />
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <!-- Bootstrap (CSS) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     :root{
@@ -35,7 +33,6 @@
       line-height:1.6;
     }
 
-    /* Page layout */
     .site {max-width:var(--container); margin:36px auto; padding:0 20px;}
     header.site-header{position:sticky; top:16px; z-index:60; backdrop-filter: blur(6px); background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.03); border-radius:14px; padding:12px 14px; display:flex; align-items:center; justify-content:space-between;}
     .brand {display:flex; gap:12px; align-items:center}
@@ -45,7 +42,7 @@
 
     /* Hero */
     .hero{display:grid; grid-template-columns:1fr 420px; gap:28px; align-items:center; margin-top:24px; padding:28px; border-radius:18px; background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); border:1px solid rgba(255,255,255,0.03)}
-    .hero .kicker{display:inline-block; padding:8px 14px; border-radius:999px; background:rgba(255,255,255,0.03); color:var(--muted); font-weight:600; font-size:13px}
+    .kicker{display:inline-block; padding:8px 14px; border-radius:999px; background:rgba(255,255,255,0.03); color:var(--muted); font-weight:600; font-size:13px}
     h1{font-family:"Playfair Display", serif; font-size:40px; margin:12px 0 8px; line-height:1.05}
     p.lead{color:var(--muted); margin-top:6px; max-width:62ch}
     .hero-cta{margin-top:18px; display:flex; gap:12px; flex-wrap:wrap}
@@ -70,14 +67,23 @@
     .skills-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
     .skill{padding:12px; border-radius:10px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03)}
     .progress {height:10px; border-radius:999px; background: rgba(255,255,255,0.04); overflow:hidden}
-    .progress > div {height:100%; background:linear-gradient(90deg,var(--accent),var(--accent-3));}
+    /* faster, nicer easing + will be updated via JS when visible */
+    .progress > div {
+      height:100%;
+      width:0; /* start at 0 and animate to data-progress% */
+      background:linear-gradient(90deg,var(--accent),var(--accent-3));
+      transition: width 0.8s cubic-bezier(.2,.9,.3,1);
+    }
+
+    /* numeric counter inside progress */
+    .progress-label{display:flex; justify-content:space-between; align-items:center; margin-top:8px; font-size:13px}
 
     /* Timeline */
     .timeline{display:flex; flex-direction:column; gap:12px}
     .t-item{padding:12px; border-radius:10px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03)}
 
     /* Contact */
-    .contact-form input, .contact-form textarea{background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--text); padding:12px; border-radius:8px}
+    .contact-form input, .contact-form textarea{background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--text); padding:12px; border-radius:8px; width:100%}
     .contact-card{padding:16px; border-radius:10px; background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); border:1px solid rgba(255,255,255,0.03)}
 
     /* Footer */
@@ -101,7 +107,6 @@
       cursor: pointer;
       padding: 0;
     }
-    
     .mobile-menu-toggle span {
       width: 100%;
       height: 2px;
@@ -110,15 +115,12 @@
       transition: all 0.3s ease;
       border-radius: 2px;
     }
-    
     .mobile-menu-toggle.active span:nth-child(1) {
       transform: rotate(45deg) translate(5px, 5px);
     }
-    
     .mobile-menu-toggle.active span:nth-child(2) {
       opacity: 0;
     }
-    
     .mobile-menu-toggle.active span:nth-child(3) {
       transform: rotate(-45deg) translate(7px, -6px);
     }
@@ -137,18 +139,9 @@
     }
     @media (max-width:640px){
       .site{margin:12px auto; padding:0 16px;}
-      
-      header.site-header {
-        padding: 10px 14px;
-        top: 8px;
-      }
-      
+      header.site-header {padding: 10px 14px; top: 8px;}
       .brand .brand-text{display:none}
-      
-      .mobile-menu-toggle {
-        display: flex;
-      }
-      
+      .mobile-menu-toggle {display: flex;}
       .nav-links {
         position: fixed;
         top: 0;
@@ -162,141 +155,37 @@
         z-index: 50;
         border-left: 1px solid rgba(255,255,255,0.03);
       }
-      
-      .nav-links.active {
-        right: 0;
-      }
-      
-      .nav-links a {
-        padding: 14px 10px;
-        width: 100%;
-        margin-bottom: 8px;
-      }
-      
-      .nav-links a.btn-ghost {
-        margin-left: 0;
-        margin-top: 12px;
-      }
-      
-      .hero {
-        padding: 20px 16px;
-        margin-top: 16px;
-        gap: 20px;
-      }
-      
-      h1 {
-        font-size: 32px;
-      }
-      
-      p.lead {
-        font-size: 15px;
-      }
-      
-      .hero-stats {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-      }
-      
-      .hero-stats > div {
-        padding: 8px;
-        text-align: center;
-      }
-      
-      .hero-stats > div strong {
-        font-size: 14px;
-      }
-      
-      .hero-stats > div .muted {
-        font-size: 11px;
-      }
-      
-      .visual {
-        min-height: 160px;
-      }
-      
-      .visual svg {
-        width: 260px;
-        height: 160px;
-      }
-      
-      section.block {
-        padding: 18px 16px;
-        margin-top: 20px;
-      }
-      
-      .projects-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-      }
-      
-      .skills-grid {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-      
-      .section-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-        margin-bottom: 16px;
-      }
-      
-      .contact-container {
-        display: flex !important;
-        flex-direction: column;
-        gap: 18px;
-      }
-      
-      .contact-form input, 
-      .contact-form textarea {
-        padding: 10px;
-      }
-      
-      .contact-card {
-        order: -1;
-      }
-      
-      .t-item > div {
-        flex-direction: column;
-        align-items: flex-start !important;
-        gap: 6px;
-      }
-      
-      .t-item > div > div:last-child {
-        align-self: flex-end;
-      }
-      
-      footer.site-foot {
-        margin-top: 20px;
-        padding: 14px;
-        font-size: 12px;
-      }
-      
-      .modal-content {
-        margin: 0 10px;
-      }
+      .nav-links.active { right: 0; }
+      .nav-links a { padding: 14px 10px; width: 100%; margin-bottom: 8px; }
+      .nav-links a.btn-ghost { margin-left: 0; margin-top: 12px; }
+      .hero { padding: 20px 16px; margin-top: 16px; gap: 20px; }
+      h1 { font-size: 32px; }
+      p.lead { font-size: 15px; }
+      .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .hero-stats > div { padding: 8px; text-align: center; }
+      .hero-stats > div strong { font-size: 14px; }
+      .hero-stats > div .muted { font-size: 11px; }
+      .visual { min-height: 160px; }
+      .visual svg { width: 260px; height: 160px; }
+      section.block { padding: 18px 16px; margin-top: 20px; }
+      .projects-grid { grid-template-columns: 1fr; gap: 12px; }
+      .skills-grid { grid-template-columns: 1fr; gap: 10px; }
+      .section-header { flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 16px; }
+      .contact-container { display: flex !important; flex-direction: column; gap: 18px; }
+      .contact-form input, .contact-form textarea { padding: 10px; }
+      .contact-card { order: -1; }
+      .t-item > div { flex-direction: column; align-items: flex-start !important; gap: 6px; }
+      .t-item > div > div:last-child { align-self: flex-end; }
+      footer.site-foot { margin-top: 20px; padding: 14px; font-size: 12px; }
+      .modal-content { margin: 0 10px; }
     }
-    
     @media (max-width: 480px) {
-      .hero-stats {
-        grid-template-columns: 1fr !important;
-      }
-      
-      .hero-cta {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      
-      .hero-cta a {
-        text-align: center;
-      }
-      
-      h1 {
-        font-size: 28px;
-      }
+      .hero-stats { grid-template-columns: 1fr !important; }
+      .hero-cta { flex-direction: column; align-items: stretch; }
+      .hero-cta a { text-align: center; }
+      h1 { font-size: 28px; }
     }
-    
+
     /* Overlay for mobile menu */
     .overlay {
       display: none;
@@ -308,10 +197,7 @@
       background: rgba(0, 0, 0, 0.7);
       z-index: 40;
     }
-    
-    .overlay.active {
-      display: block;
-    }
+    .overlay.active { display: block; }
   </style>
 </head>
 <body>
@@ -326,21 +212,21 @@
           <div style="font-size:12px;color:var(--muted)">Android • Full-stack</div>
         </div>
       </div>
-      
-      <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+
+      <button id="menuToggle" class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
       </button>
-      
-      <nav class="nav-links" role="navigation" aria-label="Primary">
+
+      <nav id="navLinks" class="nav-links" role="navigation" aria-label="Primary">
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
         <a href="#experience">Experience</a>
         <a href="#contact" class="btn-ghost">Contact</a>
       </nav>
-      
-      <div class="overlay"></div>
+
+      <div id="overlay" class="overlay" tabindex="-1" aria-hidden="true"></div>
     </header>
 
     <!-- HERO -->
@@ -356,7 +242,7 @@
             <a class="btn-ghost" href="#contact">Hire me</a>
           </div>
 
-          <div class="hero-stats">
+          <div class="hero-stats" style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:12px;">
             <div style="padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent"><strong>5+</strong><div class="muted" style="font-size:12px">Featured projects</div></div>
             <div style="padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent"><strong>Full-stack</strong><div class="muted" style="font-size:12px">Web & APIs</div></div>
             <div style="padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent"><strong>Kotlin</strong><div class="muted" style="font-size:12px">Android</div></div>
@@ -406,7 +292,7 @@
       </section>
 
       <!-- SKILLS -->
-      <section id="skills" class="block" role="region" aria-label="Skills">
+      <section id="skills" class="block fade" role="region" aria-label="Skills">
         <div class="section-header">
           <div>
             <div class="section-accent"></div>
@@ -416,34 +302,35 @@
         </div>
 
         <div class="skills-grid" aria-hidden="false">
-          <div class="skill">
-            <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:700">Kotlin</div><div class="muted">85%</div></div>
-            <div class="progress mt-2"><div style="width:85%"></div></div>
+          <!-- Each .skill includes data-progress so JS can animate it -->
+          <div class="skill" data-progress="85">
+            <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:700">Kotlin</div><div class="muted percent">0%</div></div>
+            <div class="progress mt-2"><div data-progress="85"></div></div>
           </div>
 
-          <div class="skill">
-            <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:700">React</div><div class="muted">80%</div></div>
-            <div class="progress mt-2"><div style="width:80%"></div></div>
+          <div class="skill" data-progress="80">
+            <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:700">React</div><div class="muted percent">0%</div></div>
+            <div class="progress mt-2"><div data-progress="80"></div></div>
           </div>
 
-          <div class="skill">
-            <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:700">Node.js</div><div class="muted">78%</div></div>
-            <div class="progress mt-2"><div style="width:78%"></div></div>
+          <div class="skill" data-progress="78">
+            <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:700">Node.js</div><div class="muted percent">0%</div></div>
+            <div class="progress mt-2"><div data-progress="78"></div></div>
           </div>
 
-          <div class="skill">
-            <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:700">MongoDB</div><div class="muted">74%</div></div>
-            <div class="progress mt-2"><div style="width:74%"></div></div>
+          <div class="skill" data-progress="74">
+            <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:700">MongoDB</div><div class="muted percent">0%</div></div>
+            <div class="progress mt-2"><div data-progress="74"></div></div>
           </div>
 
-          <div class="skill">
-            <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:700">PHP/CodeIgniter</div><div class="muted">82%</div></div>
-            <div class="progress mt-2"><div style="width:82%"></div></div>
+          <div class="skill" data-progress="82">
+            <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:700">PHP/CodeIgniter</div><div class="muted percent">0%</div></div>
+            <div class="progress mt-2"><div data-progress="82"></div></div>
           </div>
 
-          <div class="skill">
-            <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:700">Android</div><div class="muted">80%</div></div>
-            <div class="progress mt-2"><div style="width:80%"></div></div>
+          <div class="skill" data-progress="80">
+            <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:700">Android</div><div class="muted percent">0%</div></div>
+            <div class="progress mt-2"><div data-progress="80"></div></div>
           </div>
         </div>
       </section>
@@ -505,158 +392,145 @@
             <textarea id="message" name="message" rows="5" placeholder="Tell me about your project" required></textarea>
 
             <div style="display:flex; gap:10px; margin-top:12px">
-              <button class="btn-primary" type="submit">Send message</button>
-              <button class="btn-ghost" type="button" onclick="copyEmail()">Copy email</button>
+              <!-- fixed broken/missing button -->
+              <button type="submit" class="btn-primary">Send message</button>
+              <button type="reset" class="btn-ghost">Reset</button>
             </div>
           </form>
 
           <aside class="contact-card">
             <div style="font-weight:700">Contact</div>
-            <div class="muted" style="margin-top:6px">sharmavikaskumar95@gmail.com</div>
-            <div class="muted" style="margin-top:12px">Based in India (IST). Available for remote & onsite roles.</div>
-            <div style="display:flex; gap:8px; margin-top:12px">
-              <a class="btn-ghost" href="https://github.com/sharmavikaskumar" target="_blank" rel="noopener">GitHub</a>
-              <a class="btn-ghost" href="https://www.linkedin.com/in/vikas-kumar-sharma--dev" target="_blank" rel="noopener">LinkedIn</a>
-              <a class="btn-ghost" href="mailto:sharmavikaskumar95@gmail.com">Email</a>
-            </div>
+            <div class="muted" style="margin-top:8px">sharmavikaskumar95@gmail.com</div>
+            <div class="muted" style="margin-top:6px">Open to freelance & full-time</div>
           </aside>
         </div>
       </section>
 
-      <footer class="site-foot">
-        <div>© <span id="yr"></span> Vikas Sharma — All rights reserved.</div>
-        <div style="margin-top:8px" class="muted">Made with care • Built with HTML, CSS, Bootstrap & GSAP</div>
-      </footer>
+      <footer class="site-foot">© <span id="year"></span> Vikas Sharma — All rights reserved</footer>
     </main>
   </div>
 
-  <!-- Project Details Modal -->
-  <div class="modal" id="projectModal" tabindex="-1" aria-hidden="true" role="dialog" aria-labelledby="projectModalTitle">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content" style="background:var(--panel); color:var(--text); border:1px solid rgba(255,255,255,0.04)">
-        <div class="modal-header" style="border-bottom:1px solid rgba(255,255,255,0.03)">
-          <h5 class="modal-title" id="projectModalTitle">Project</h5>
-          <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close" style="background:transparent;border:1px solid rgba(255,255,255,0.05);"></button>
-        </div>
-        <div class="modal-body" id="projectModalBody"></div>
-        <div class="modal-footer" style="border-top:1px solid rgba(255,255,255,0.03)">
-          <button type="button" class="btn-ghost" data-bs-dismiss="modal">Close</button>
-          <a id="projectLive" class="btn-primary" href="#" target="_blank" rel="noopener">Live demo</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- JS: Bootstrap + GSAP -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-
   <script>
-    // set year
-    document.getElementById('yr').textContent = new Date().getFullYear();
+    // Update footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Mobile menu functionality
-    const menuToggle = document.querySelector('.mobile-menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    const overlay = document.querySelector('.overlay');
-    
-    function toggleMenu() {
-      menuToggle.classList.toggle('active');
-      navLinks.classList.toggle('active');
-      overlay.classList.toggle('active');
-      document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
-    }
-    
-    menuToggle.addEventListener('click', toggleMenu);
-    overlay.addEventListener('click', toggleMenu);
-    
-    // Close menu when clicking on nav links
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        if (navLinks.classList.contains('active')) {
-          toggleMenu();
-        }
-      });
-    });
+    // Mobile menu toggle (fixed and accessible)
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    const overlay = document.getElementById('overlay');
 
-    // register GSAP ScrollTrigger
-    if(window.gsap && window.gsap.registerPlugin) gsap.registerPlugin(ScrollTrigger);
-
-    // entrance animations
-    gsap.from('.site-header', {y:-24, autoAlpha:0, duration:0.7, ease:'power2.out'});
-    const heroTl = gsap.timeline({defaults:{duration:0.7, ease:'power2.out'}});
-    heroTl.from('.kicker',{y:8, autoAlpha:0})
-          .from('h1',{y:18, autoAlpha:0}, '-=0.45')
-          .from('.lead',{y:18, autoAlpha:0}, '-=0.45')
-          .from('.hero-cta a',{y:8, autoAlpha:0, stagger:0.08}, '-=0.45')
-          .from('.visual svg',{scale:.98, autoAlpha:0, duration:0.9}, '-=0.55');
-
-    // reveal elements on scroll
-    gsap.utils.toArray('.proj, .skill, .t-item, .contact-card').forEach((el, i) => {
-      gsap.from(el, {
-        y: 18,
-        autoAlpha: 0,
-        duration: 0.7,
-        delay: i * 0.04,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 85%',
-          toggleActions: 'play none none reverse'
-        }
-      });
-    });
-
-    // project click -> modal
-    const projects = document.querySelectorAll('.proj');
-    const modalEl = document.getElementById('projectModal');
-    const bsModal = new bootstrap.Modal(modalEl, {keyboard:true});
-    const modalTitle = document.getElementById('projectModalTitle');
-    const modalBody = document.getElementById('projectModalBody');
-    const modalLive = document.getElementById('projectLive');
-
-    projects.forEach(p => {
-      p.addEventListener('click', () => openProject(p));
-      p.addEventListener('keydown', (ev) => { if(ev.key === 'Enter' || ev.key === ' ') openProject(p); });
-    });
-
-    function openProject(card) {
-      const title = card.getAttribute('data-title') || 'Project';
-      const desc = card.getAttribute('data-desc') || '';
-      modalTitle.textContent = title;
-      modalBody.innerHTML = `<p class="muted">${desc}</p>`;
-      modalLive.href = '#'; // replace with actual demo link if available
-      bsModal.show();
-
-      // animate modal with GSAP
-      gsap.fromTo('.modal-content',{y:18, autoAlpha:0, scale:0.98},{y:0, autoAlpha:1, scale:1, duration:0.45, ease:'back.out(1.1)'});
-    }
-
-    // contact demo
-    function sendMessage(e){
-      e.preventDefault();
-      const f = e.target;
-      const name = f.name.value.trim();
-      const email = f.email.value.trim();
-      if(!name || !email){ alert('Please fill name and email'); return; }
-      alert(`Thanks ${name}! I'll reach out at ${email} — (demo).`);
-      f.reset();
-    }
-    window.sendMessage = sendMessage;
-
-    function copyEmail(){
-      const email = 'sharmavikaskumar95@gmail.com';
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(email).then(()=> alert('Email copied to clipboard!')).catch(()=> prompt('Copy email', email));
+    function setMenuOpen(open) {
+      if (open) {
+        menuToggle.classList.add('active');
+        navLinks.classList.add('active');
+        overlay.classList.add('active');
+        menuToggle.setAttribute('aria-expanded', 'true');
+        overlay.setAttribute('aria-hidden', 'false');
       } else {
-        prompt('Copy email', email);
+        menuToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+        overlay.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        overlay.setAttribute('aria-hidden', 'true');
       }
     }
 
-    // keyboard accessibility: focus outline for clickable .proj
-    projects.forEach(p => p.addEventListener('focus', ()=> p.style.outline = '2px solid rgba(122,107,255,0.12)'));
-    projects.forEach(p => p.addEventListener('blur', ()=> p.style.outline = 'none'));
+    menuToggle.addEventListener('click', () => {
+      const open = !navLinks.classList.contains('active');
+      setMenuOpen(open);
+    });
+    overlay.addEventListener('click', () => setMenuOpen(false));
+
+    // Smooth reveal for sections using IntersectionObserver
+    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.18 };
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observe .fade elements
+    document.querySelectorAll('.fade').forEach(el => revealObserver.observe(el));
+
+    // SKILLS: animate progress bars + numeric counters with a fast, staggered effect
+    const skillsSection = document.getElementById('skills');
+    const skillsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateSkills();
+          skillsObserver.unobserve(skillsSection);
+        }
+      });
+    }, { threshold: 0.25 });
+
+    skillsObserver.observe(skillsSection);
+
+    function animateSkills() {
+      const skills = Array.from(document.querySelectorAll('.skill'));
+      // base duration: 800ms (change this value if needed)
+      const DURATION = 800;
+      skills.forEach((skill, i) => {
+        const progressBar = skill.querySelector('.progress > div');
+        const target = parseInt(progressBar.getAttribute('data-progress') || skill.dataset.progress || 0, 10);
+        // stagger each bar slightly
+        const delay = i * 100;
+
+        // set transition duration (makes all consistent)
+        progressBar.style.transition = `width ${DURATION}ms cubic-bezier(.2,.9,.3,1) ${delay}ms`;
+        // trigger width after tiny timeout so transition applies
+        setTimeout(() => {
+          progressBar.style.width = target + '%';
+        }, 30);
+
+        // numeric counter (fast)
+        const label = skill.querySelector('.percent');
+        if (label) {
+          animateNumber(label, target, DURATION + delay);
+        }
+      });
+    }
+
+    // animateNumber: animates integer from 0 to 'to' within ms milliseconds
+    function animateNumber(el, to, ms) {
+      const start = performance.now();
+      const from = 0;
+      function step(now) {
+        const t = Math.min((now - start) / ms, 1);
+        const value = Math.round(from + (to - from) * easeOutCubic(t));
+        el.textContent = value + '%';
+        if (t < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
+
+    // small helper: keyboard accessibility for project cards (Enter key opens)
+    document.querySelectorAll('.proj[tabindex]').forEach(card => {
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          // example action: show title in alert (replace with real modal/action)
+          const title = card.dataset.title || 'Project';
+          alert(title);
+        }
+      });
+      card.addEventListener('click', () => {
+        const title = card.dataset.title || 'Project';
+        alert(title);
+      });
+    });
+
+    // basic contact form placeholder function
+    function sendMessage(e){
+      e.preventDefault();
+      // simple feedback for demo (replace with real sending logic)
+      const name = document.getElementById('name').value.trim();
+      if(!name) { alert('Please enter your name'); return; }
+      alert('Thanks, ' + name + '! Message sent (demo).');
+      e.target.reset();
+    }
   </script>
 </body>
 </html>
