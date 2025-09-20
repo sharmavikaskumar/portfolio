@@ -80,7 +80,18 @@
         <a href="#projects" class="hover:text-primary dark:hover:text-primaryDark font-semibold">Projects</a>
         <a href="#contact" class="bg-primary dark:bg-primaryDark text-black px-3 py-1 rounded font-semibold hover:bg-green-600 dark:hover:bg-green-700">Contact</a>
       </nav>
-      <button id="themeToggle" class="ml-2 px-3 py-1 border rounded font-semibold hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300">Toggle Theme</button>
+<button id="themeToggle" class="ml-2 mt-4 md:mt-0 w-10 h-10 flex items-center justify-center rounded-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-300">
+  <!-- Sun icon for light mode (default) -->
+  <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M6.05 17.95l-1.414 1.414m12.728 0l1.414-1.414M6.05 6.05L4.636 4.636M12 8a4 4 0 100 8 4 4 0 000-8z" />
+  </svg>
+
+  <!-- Moon icon for dark mode (hidden by default) -->
+  <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-200 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z" />
+  </svg>
+</button>
+
     </div>
   </header>
 
@@ -145,16 +156,13 @@
       <section id="projects" class="space-y-4">
         <h3 class="text-xl font-bold">Projects</h3>
         <div class="grid md:grid-cols-2 gap-4">
-          <div class="fade-in bg-white dark:bg-gray-800 rounded-xl shadow p-4 card">
-            <h4 class="font-semibold">Attendance Management System</h4>
-            <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">A student attendance management system built with PHP for easy tracking and reporting.</p>
-            <a href="https://github.com/vikas/attendance-management" target="_blank" class="bg-primary dark:bg-primaryDark text-black px-3 py-1 rounded mt-2 inline-block font-semibold hover:bg-green-600 dark:hover:bg-green-700">Source</a>
-          </div>
+        
           <div class="fade-in bg-white dark:bg-gray-800 rounded-xl shadow p-4 card">
             <h4 class="font-semibold">Blog app</h4>
             <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">A dynamic blog application built with CodeIgniter, featuring responsive design and user-friendly content management.</p>
             <a href="https://github.com/vikas/food-wallet" target="_blank" class="bg-primary dark:bg-primaryDark text-black px-3 py-1 rounded mt-2 inline-block font-semibold hover:bg-green-600 dark:hover:bg-green-700">Source</a>
           </div>
+           
           <div class="fade-in bg-white dark:bg-gray-800 rounded-xl shadow p-4 card">
             <h4 class="font-semibold">Tic-Tac-Teo</h4>
             <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">A mobile Tic-Tac-Toe game developed in Kotlin with an interactive and user-friendly interface.</p>
@@ -164,6 +172,11 @@
             <h4 class="font-semibold">TO-DO-APP</h4>
             <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">A To-Do list application built with Kotlin for managing tasks efficiently and intuitively.</p>
             <a href="https://github.com/vikas/util-libs" target="_blank" class="bg-primary dark:bg-primaryDark text-black px-3 py-1 rounded mt-2 inline-block font-semibold hover:bg-green-600 dark:hover:bg-green-700">Source</a>
+          </div>
+           <div class="fade-in bg-white dark:bg-gray-800 rounded-xl shadow p-4 card">
+            <h4 class="font-semibold">Attendance Management System</h4>
+            <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">A student attendance management system built with PHP for easy tracking and reporting.</p>
+            <a href="https://github.com/vikas/attendance-management" target="_blank" class="bg-primary dark:bg-primaryDark text-black px-3 py-1 rounded mt-2 inline-block font-semibold hover:bg-green-600 dark:hover:bg-green-700">Source</a>
           </div>
         </div>
       </section>
@@ -203,11 +216,25 @@
   }, { threshold: 0.2 });
   fadeEls.forEach(el => observer.observe(el));
 
-  // Theme toggle
-  const themeToggle = document.getElementById('themeToggle');
-  themeToggle.addEventListener('click', () => {
-    document.documentElement.classList.toggle('dark');
-  });
+ const themeToggle = document.getElementById('themeToggle');
+const sunIcon = document.getElementById('sunIcon');
+const moonIcon = document.getElementById('moonIcon');
+
+themeToggle.addEventListener('click', () => {
+  document.documentElement.classList.toggle('dark');
+
+  // Swap icons
+  if (document.documentElement.classList.contains('dark')) {
+    sunIcon.classList.add('hidden');
+    moonIcon.classList.remove('hidden');
+  } else {
+    sunIcon.classList.remove('hidden');
+    moonIcon.classList.add('hidden');
+  }
+});
+
+
+  
 </script>
 
 </body>
