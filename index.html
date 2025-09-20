@@ -1,536 +1,210 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="transition-colors duration-500">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Vikas Sharma — Portfolio</title>
-  <meta name="description" content="Portfolio of Vikas Sharma — Software Developer. Android • MERN • Kotlin" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIKAS SHARMA — Portfolio</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- TailwindCSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#97ff36',
+            primaryDark: '#7cd00d'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            poppins: ['Poppins', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
-    :root{
-      --bg:#0b0b0d;
-      --panel:#0f1013;
-      --muted:#9aa4b2;
-      --text:#e9f0f6;
-      --accent:#D9C7BD;
-      --accent-2:#4A4B4F;
-      --accent-3:#7A6BFF;
-      --glass: rgba(255,255,255,0.03);
-      --radius:18px;
-      --container:1100px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-      background:linear-gradient(180deg,#060607 0%, #0b0b0d 100%);
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      font-size:16px;
-      line-height:1.6;
-    }
+    /* Fonts */
+    body { font-family: 'Inter', sans-serif; line-height: 1.6; }
+    h1, h2, h3, h4, h5 { font-family: 'Poppins', sans-serif; }
 
-    .site {max-width:var(--container); margin:36px auto; padding:0 20px;}
-    header.site-header{position:sticky; top:16px; z-index:60; backdrop-filter: blur(6px); background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.03); border-radius:14px; padding:12px 14px; display:flex; align-items:center; justify-content:space-between;}
-    .brand {display:flex; gap:12px; align-items:center}
-    .brand .logo{width:44px; height:44px; border-radius:10px; display:grid; place-items:center; background:linear-gradient(135deg,var(--accent-3),var(--accent)); color:#0b0b0d; font-weight:700}
-    .nav-links a{color:var(--muted); text-decoration:none; font-weight:600; padding:8px 10px; border-radius:8px}
-    .nav-links a:hover{color:var(--text); background:rgba(255,255,255,0.02)}
+    /* Headings spacing */
+    h1 { font-weight: 700; font-size: 2rem; margin-bottom: 0.5rem; }
+    h2 { font-weight: 600; font-size: 1.75rem; margin-bottom: 0.5rem; }
+    h3 { font-weight: 600; font-size: 1.5rem; margin-bottom: 0.5rem; }
+    h4 { font-weight: 500; font-size: 1.25rem; margin-bottom: 0.25rem; }
 
-    /* Hero */
-    .hero{display:grid; grid-template-columns:1fr 420px; gap:28px; align-items:center; margin-top:24px; padding:28px; border-radius:18px; background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); border:1px solid rgba(255,255,255,0.03)}
-    .kicker{display:inline-block; padding:8px 14px; border-radius:999px; background:rgba(255,255,255,0.03); color:var(--muted); font-weight:600; font-size:13px}
-    h1{font-family:"Playfair Display", serif; font-size:40px; margin:12px 0 8px; line-height:1.05}
-    p.lead{color:var(--muted); margin-top:6px; max-width:62ch}
-    .hero-cta{margin-top:18px; display:flex; gap:12px; flex-wrap:wrap}
-    .btn-ghost{padding:10px 14px; border-radius:12px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:var(--text); font-weight:600}
-    .btn-primary{padding:10px 14px; border-radius:12px; background:linear-gradient(90deg,var(--accent) 0%, var(--accent-3) 100%); color:#0b0b0d; border:transparent; font-weight:700}
+    /* Paragraphs */
+    p { font-weight: 400; color: #6b7280; } /* Tailwind gray-500 */
 
-    /* Visual mockup */
-    .visual{border-radius:12px; padding:12px; background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); border:1px solid rgba(255,255,255,0.03); display:flex; align-items:center; justify-content:center; min-height:200px}
+    /* Fade-in animation */
+    .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+    .fade-in.in-view { opacity: 1; transform: translateY(0); }
 
-    /* Sections */
-    section.block{margin-top:28px; padding:22px; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent); border:1px solid rgba(255,255,255,0.03)}
-    .section-header{display:flex; justify-content:space-between; align-items:end; gap:12px; margin-bottom:12px}
-    .section-accent{height:8px; width:46px; border-radius:999px; background:linear-gradient(90deg,var(--accent),var(--accent-3)); margin-bottom:6px}
-    .section-sub{color:var(--muted); font-size:13px}
+    /* Card hover effect */
+    .card { transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; border: 1px solid transparent; }
+    .card:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 15px 35px rgba(0,0,0,0.15); border-color: #97ff36; }
 
-    /* Projects grid */
-    .projects-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
-    .proj{padding:16px; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); border:1px solid rgba(255,255,255,0.03); cursor:pointer; transition:transform .28s ease, box-shadow .28s ease}
-    .proj:hover{transform:translateY(-6px); box-shadow:0 20px 50px rgba(0,0,0,0.6)}
+    /* Buttons */
+    button, a { font-family: 'Poppins', sans-serif; font-weight: 600; transition: all 0.3s ease; }
+    button:hover, a:hover { transform: scale(1.05); }
 
-    /* Skills */
-    .skills-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
-    .skill{padding:12px; border-radius:10px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03)}
-    .progress {height:10px; border-radius:999px; background: rgba(255,255,255,0.04); overflow:hidden}
-    /* faster, nicer easing + will be updated via JS when visible */
-    .progress > div {
-      height:100%;
-      width:0; /* start at 0 and animate to data-progress% */
-      background:linear-gradient(90deg,var(--accent),var(--accent-3));
-      transition: width 0.8s cubic-bezier(.2,.9,.3,1);
-    }
+    /* Skills badges */
+    .skill-badge { font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
 
-    /* numeric counter inside progress */
-    .progress-label{display:flex; justify-content:space-between; align-items:center; margin-top:8px; font-size:13px}
-
-    /* Timeline */
-    .timeline{display:flex; flex-direction:column; gap:12px}
-    .t-item{padding:12px; border-radius:10px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03)}
-
-    /* Contact */
-    .contact-form input, .contact-form textarea{background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--text); padding:12px; border-radius:8px; width:100%}
-    .contact-card{padding:16px; border-radius:10px; background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); border:1px solid rgba(255,255,255,0.03)}
-
-    /* Footer */
-    footer.site-foot{margin-top:28px; text-align:center; color:var(--muted); font-size:13px; padding:18px}
-
-    /* Utility */
-    .muted{color:var(--muted)}
-    .center{display:flex; align-items:center; justify-content:center}
-    .fade{opacity:0; transform:translateY(12px); transition:all .6s ease}
-    .fade.show{opacity:1; transform:none}
-
-    /* Mobile menu */
-    .mobile-menu-toggle {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      width: 30px;
-      height: 30px;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-    }
-    .mobile-menu-toggle span {
-      width: 100%;
-      height: 2px;
-      background-color: var(--text);
-      margin: 3px 0;
-      transition: all 0.3s ease;
-      border-radius: 2px;
-    }
-    .mobile-menu-toggle.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-    .mobile-menu-toggle.active span:nth-child(2) {
-      opacity: 0;
-    }
-    .mobile-menu-toggle.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(7px, -6px);
-    }
-
-    /* Responsive */
-    @media (max-width:980px){
-      .hero{grid-template-columns:1fr; padding:20px}
-      .projects-grid{grid-template-columns:repeat(2,1fr)}
-      .skills-grid{grid-template-columns:repeat(2,1fr)}
-      .contact-container {grid-template-columns: 1fr !important;}
-    }
-    @media (max-width:768px) {
-      .hero-stats {
-        grid-template-columns: repeat(2, 1fr) !important;
-      }
-    }
-    @media (max-width:640px){
-      .site{margin:12px auto; padding:0 16px;}
-      header.site-header {padding: 10px 14px; top: 8px;}
-      .brand .brand-text{display:none}
-      .mobile-menu-toggle {display: flex;}
-      .nav-links {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 70%;
-        height: 100vh;
-        background: var(--panel);
-        flex-direction: column;
-        padding: 80px 20px 20px;
-        transition: right 0.3s ease;
-        z-index: 50;
-        border-left: 1px solid rgba(255,255,255,0.03);
-      }
-      .nav-links.active { right: 0; }
-      .nav-links a { padding: 14px 10px; width: 100%; margin-bottom: 8px; }
-      .nav-links a.btn-ghost { margin-left: 0; margin-top: 12px; }
-      .hero { padding: 20px 16px; margin-top: 16px; gap: 20px; }
-      h1 { font-size: 32px; }
-      p.lead { font-size: 15px; }
-      .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-      .hero-stats > div { padding: 8px; text-align: center; }
-      .hero-stats > div strong { font-size: 14px; }
-      .hero-stats > div .muted { font-size: 11px; }
-      .visual { min-height: 160px; }
-      .visual svg { width: 260px; height: 160px; }
-      section.block { padding: 18px 16px; margin-top: 20px; }
-      .projects-grid { grid-template-columns: 1fr; gap: 12px; }
-      .skills-grid { grid-template-columns: 1fr; gap: 10px; }
-      .section-header { flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 16px; }
-      .contact-container { display: flex !important; flex-direction: column; gap: 18px; }
-      .contact-form input, .contact-form textarea { padding: 10px; }
-      .contact-card { order: -1; }
-      .t-item > div { flex-direction: column; align-items: flex-start !important; gap: 6px; }
-      .t-item > div > div:last-child { align-self: flex-end; }
-      footer.site-foot { margin-top: 20px; padding: 14px; font-size: 12px; }
-      .modal-content { margin: 0 10px; }
-    }
-    @media (max-width: 480px) {
-      .hero-stats { grid-template-columns: 1fr !important; }
-      .hero-cta { flex-direction: column; align-items: stretch; }
-      .hero-cta a { text-align: center; }
-      h1 { font-size: 28px; }
-    }
-
-    /* Overlay for mobile menu */
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 40;
-    }
-    .overlay.active { display: block; }
+    /* Inputs */
+    input, textarea { font-family: 'Inter', sans-serif; font-size: 0.95rem; }
   </style>
 </head>
-<body>
-  <div class="site">
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-500">
 
-    <!-- HEADER -->
-    <header class="site-header" role="banner" aria-label="Site header">
-      <div class="brand">
-        <div class="logo" aria-hidden="true">VS</div>
-        <div class="brand-text">
-          <div style="font-weight:700">VIKAS SHARMA</div>
-          <div style="font-size:12px;color:var(--muted)">Android • Full-stack</div>
+<div class="max-w-6xl mx-auto p-6">
+  <!-- Header -->
+  <header class="flex flex-wrap justify-between items-center mb-10">
+    <div class="flex items-center gap-3">
+      <div class="w-12 h-12 rounded-xl bg-primary dark:bg-primaryDark flex items-center justify-center text-black dark:text-black font-bold">VS</div>
+      <div>
+        <h1 class="text-xl font-bold">Vikas Sharma</h1>
+        <p class="text-sm text-gray-500 dark:text-gray-400">Frontend & Android Developer — Kotlin • React • MERN</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <nav class="hidden md:flex gap-4">
+        <a href="#about" class="hover:text-primary dark:hover:text-primaryDark font-semibold">About</a>
+        <a href="#experience" class="hover:text-primary dark:hover:text-primaryDark font-semibold">Experience</a>
+        <a href="#projects" class="hover:text-primary dark:hover:text-primaryDark font-semibold">Projects</a>
+        <a href="#contact" class="bg-primary dark:bg-primaryDark text-black px-3 py-1 rounded font-semibold hover:bg-green-600 dark:hover:bg-green-700">Contact</a>
+      </nav>
+      <button id="themeToggle" class="ml-2 px-3 py-1 border rounded font-semibold hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300">Toggle Theme</button>
+    </div>
+  </header>
+
+  <div class="grid md:grid-cols-3 gap-8">
+    <!-- Sidebar -->
+    <aside class="space-y-6" id="about">
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow p-6 text-center space-y-4 fade-in card">
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400" alt="Vikas avatar" class="w-24 h-24 rounded-full mx-auto object-cover">
+        <h2 class="font-bold text-lg">Vikas Sharma</h2>
+        <p class="text-gray-500 dark:text-gray-400 text-sm">Full-stack & Android Developer</p>
+        <p class="text-gray-500 dark:text-gray-400 text-sm">I build clean, responsive interfaces and Android apps with pragmatic, well-tested code.</p>
+
+        <h3 class="font-semibold mt-4">Skills</h3>
+        <div class="flex flex-wrap justify-center gap-2">
+          <span class="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded text-sm skill-badge">HTML</span>
+          <span class="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded text-sm skill-badge">CSS</span>
+          <span class="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded text-sm skill-badge">JS</span>
+          <span class="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded text-sm skill-badge">Kotlin</span>
+          <span class="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded text-sm skill-badge">React</span>
+          <span class="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded text-sm skill-badge">Node</span>
+        </div>
+
+        <div class="mt-4 text-left text-sm space-y-1">
+          <p class="text-gray-500 dark:text-gray-400">Location</p>
+          <p>City, Country</p>
+          <p class="text-gray-500 dark:text-gray-400">Email</p>
+          <p><a href="mailto:vikas@example.com" class="text-primary dark:text-primaryDark font-medium">vikas@example.com</a></p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="md:col-span-2 space-y-8">
+      <!-- Hero -->
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow p-6 fade-in card">
+        <h2 class="text-2xl font-bold">Hello — I’m Vikas 👋</h2>
+        <p class="text-gray-500 dark:text-gray-400 mt-2">I create polished, user-focused web and Android experiences. Building MERN and Kotlin apps with clean architecture and responsive UI.</p>
+        <div class="flex gap-2 mt-4">
+          <a href="#projects" class="bg-primary dark:bg-primaryDark text-black px-3 py-1 rounded font-semibold hover:bg-green-600 dark:hover:bg-green-700">See Projects</a>
+          <a href="#contact" class="bg-primary dark:bg-primaryDark text-black px-3 py-1 rounded font-semibold hover:bg-green-600 dark:hover:bg-green-700">Contact</a>
         </div>
       </div>
 
-      <button id="menuToggle" class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <nav id="navLinks" class="nav-links" role="navigation" aria-label="Primary">
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#experience">Experience</a>
-        <a href="#contact" class="btn-ghost">Contact</a>
-      </nav>
-
-      <div id="overlay" class="overlay" tabindex="-1" aria-hidden="true"></div>
-    </header>
-
-    <!-- HERO -->
-    <main>
-      <section class="hero" id="hero" role="region" aria-label="Introduction">
-        <div>
-          <div class="kicker">Portfolio • Designer & Developer</div>
-          <h1>Design-forward web & Android experiences</h1>
-          <p class="lead">I craft clean interfaces and robust backends. Recent work includes an Attendance Management System (PHP), Blog Web App (CodeIgniter), and production-ready Android applications.</p>
-
-          <div class="hero-cta">
-            <a class="btn-primary" href="#projects">See Projects</a>
-            <a class="btn-ghost" href="#contact">Hire me</a>
+      <!-- Experience -->
+      <section id="experience" class="space-y-4">
+        <h3 class="text-xl font-bold">Experience</h3>
+        <div class="space-y-4">
+          <div class="fade-in bg-white dark:bg-gray-800 rounded-xl shadow p-4 card">
+            <h4 class="font-semibold">Junior Software Developer — BARC</h4>
+            <p class="text-gray-500 dark:text-gray-400 text-sm">2025 — Present</p>
+            <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Building Android apps with Kotlin and web apps with MERN stack. Focus on APIs, authentication, and responsive UI.</p>
           </div>
-
-          <div class="hero-stats" style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:12px;">
-            <div style="padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent"><strong>5+</strong><div class="muted" style="font-size:12px">Featured projects</div></div>
-            <div style="padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent"><strong>Full-stack</strong><div class="muted" style="font-size:12px">Web & APIs</div></div>
-            <div style="padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent"><strong>Kotlin</strong><div class="muted" style="font-size:12px">Android</div></div>
-          </div>
-        </div>
-
-        <aside class="visual" aria-hidden="true">
-          <svg width="320" height="200" viewBox="0 0 320 200" role="img" aria-label="Decorative device">
-            <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#7A6BFF"/><stop offset="1" stop-color="#D9C7BD"/></linearGradient></defs>
-            <rect x="6" y="6" width="308" height="188" rx="12" fill="url(#g)"></rect>
-          </svg>
-        </aside>
-      </section>
-
-      <!-- PROJECTS -->
-      <section id="projects" class="block" role="region" aria-label="Projects">
-        <div class="section-header">
-          <div>
-            <div class="section-accent"></div>
-            <h2 style="margin:0">Featured Projects</h2>
-            <div class="section-sub">Selected work — Web, Android, Kotlin</div>
-          </div>
-          <div><a class="btn-ghost" href="#projects">View all</a></div>
-        </div>
-
-        <div class="projects-grid" aria-live="polite">
-          <div class="proj" tabindex="0" role="button" data-title="Attendance Management System" data-desc="Students & teachers manage attendance, fees and materials. Token auth, reporting, and admin UI.">
-            <div style="display:flex; justify-content:space-between; align-items:flex-start">
-              <span class="tag muted">PHP • Full-stack</span>
-            </div>
-            <div class="proj-title" style="font-weight:700; margin-top:8px">Attendance Management System</div>
-            <div class="proj-desc muted" style="margin-top:8px">Students & teachers manage attendance, fees and materials. Token authentication with responsive design.</div>
-          </div>
-
-          <div class="proj" tabindex="0" role="button" data-title="Blog Web App" data-desc="A blogging platform built with CodeIgniter. Posts, categories, media upload and simple admin.">
-            <span class="tag muted">CodeIgniter • Full-stack</span>
-            <div class="proj-title" style="font-weight:700; margin-top:8px">Blog Web App</div>
-            <div class="proj-desc muted" style="margin-top:8px">A feature-rich blogging platform built with CodeIgniter. Create, edit, and manage posts with authentication.</div>
-          </div>
-
-          <div class="proj" tabindex="0" role="button" data-title="Calculator App" data-desc="A polished calculator built in Kotlin with custom layout, themes and accessible controls.">
-            <span class="tag muted">Kotlin • Android</span>
-            <div class="proj-title" style="font-weight:700; margin-top:8px">Calculator App</div>
-            <div class="proj-desc muted" style="margin-top:8px">A clean and responsive calculator built for Android with custom UI layout.</div>
+          <div class="fade-in bg-white dark:bg-gray-800 rounded-xl shadow p-4 card">
+            <h4 class="font-semibold">Intern — CodingInter Framework</h4>
+            <p class="text-gray-500 dark:text-gray-400 text-sm">2024 — 2025</p>
+            <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Developed reusable components and libraries. Learned best practices in clean code and project structure.</p>
           </div>
         </div>
       </section>
 
-      <!-- SKILLS -->
-      <section id="skills" class="block fade" role="region" aria-label="Skills">
-        <div class="section-header">
-          <div>
-            <div class="section-accent"></div>
-            <h2 style="margin:0">Skills</h2>
-            <div class="section-sub">Technologies & proficiency</div>
+      <!-- Projects -->
+      <section id="projects" class="space-y-4">
+        <h3 class="text-xl font-bold">Projects</h3>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="fade-in bg-white dark:bg-gray-800 rounded-xl shadow p-4 card">
+            <h4 class="font-semibold">Attendance Management System</h4>
+            <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">MERN app with admin dashboard & student portal.</p>
+            <a href="https://github.com/vikas/attendance-management" target="_blank" class="bg-primary dark:bg-primaryDark text-black px-3 py-1 rounded mt-2 inline-block font-semibold hover:bg-green-600 dark:hover:bg-green-700">Source</a>
           </div>
-        </div>
-
-        <div class="skills-grid" aria-hidden="false">
-          <!-- Each .skill includes data-progress so JS can animate it -->
-          <div class="skill" data-progress="85">
-            <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:700">Kotlin</div><div class="muted percent">0%</div></div>
-            <div class="progress mt-2"><div data-progress="85"></div></div>
+          <div class="fade-in bg-white dark:bg-gray-800 rounded-xl shadow p-4 card">
+            <h4 class="font-semibold">Food Ordering & Wallet App</h4>
+            <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Kotlin Android app with wallet integration & menu management.</p>
+            <a href="https://github.com/vikas/food-wallet" target="_blank" class="bg-primary dark:bg-primaryDark text-black px-3 py-1 rounded mt-2 inline-block font-semibold hover:bg-green-600 dark:hover:bg-green-700">Source</a>
           </div>
-
-          <div class="skill" data-progress="80">
-            <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:700">React</div><div class="muted percent">0%</div></div>
-            <div class="progress mt-2"><div data-progress="80"></div></div>
+          <div class="fade-in bg-white dark:bg-gray-800 rounded-xl shadow p-4 card">
+            <h4 class="font-semibold">AI Study Buddy</h4>
+            <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Kotlin app for personalized exam prep with targeted practice.</p>
+            <a href="https://github.com/vikas/ai-study-buddy" target="_blank" class="bg-primary dark:bg-primaryDark text-black px-3 py-1 rounded mt-2 inline-block font-semibold hover:bg-green-600 dark:hover:bg-green-700">Source</a>
           </div>
-
-          <div class="skill" data-progress="78">
-            <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:700">Node.js</div><div class="muted percent">0%</div></div>
-            <div class="progress mt-2"><div data-progress="78"></div></div>
-          </div>
-
-          <div class="skill" data-progress="74">
-            <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:700">MongoDB</div><div class="muted percent">0%</div></div>
-            <div class="progress mt-2"><div data-progress="74"></div></div>
-          </div>
-
-          <div class="skill" data-progress="82">
-            <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:700">PHP/CodeIgniter</div><div class="muted percent">0%</div></div>
-            <div class="progress mt-2"><div data-progress="82"></div></div>
-          </div>
-
-          <div class="skill" data-progress="80">
-            <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:700">Android</div><div class="muted percent">0%</div></div>
-            <div class="progress mt-2"><div data-progress="80"></div></div>
+          <div class="fade-in bg-white dark:bg-gray-800 rounded-xl shadow p-4 card">
+            <h4 class="font-semibold">Small Utilities & Libraries</h4>
+            <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Reusable components & small libraries for consistent UI.</p>
+            <a href="https://github.com/vikas/util-libs" target="_blank" class="bg-primary dark:bg-primaryDark text-black px-3 py-1 rounded mt-2 inline-block font-semibold hover:bg-green-600 dark:hover:bg-green-700">Source</a>
           </div>
         </div>
       </section>
 
-      <!-- EXPERIENCE -->
-      <section id="experience" class="block" role="region" aria-label="Experience">
-        <div class="section-header">
-          <div>
-            <div class="section-accent"></div>
-            <h2 style="margin:0">Experience</h2>
-            <div class="section-sub">Work & education</div>
+      <!-- Contact -->
+      <section id="contact" class="bg-white dark:bg-gray-800 rounded-xl shadow p-6 space-y-4 fade-in">
+        <h3 class="text-xl font-bold">Contact</h3>
+        <p class="text-gray-500 dark:text-gray-400">Send me a short message to connect.</p>
+        <form class="grid gap-3" onsubmit="event.preventDefault(); alert('Thanks! Replace with form handling.')">
+          <input type="text" placeholder="Name" required class="border border-gray-300 dark:border-gray-700 rounded px-3 py-2 w-full bg-white dark:bg-gray-900">
+          <input type="email" placeholder="Email" required class="border border-gray-300 dark:border-gray-700 rounded px-3 py-2 w-full bg-white dark:bg-gray-900">
+          <textarea placeholder="Message" required class="border border-gray-300 dark:border-gray-700 rounded px-3 py-2 w-full bg-white dark:bg-gray-900"></textarea>
+          <div class="flex gap-2 justify-end">
+            <button type="reset" class="border border-gray-400 dark:border-gray-600 px-3 py-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700">Reset</button>
+            <button type="submit" class="bg-primary dark:bg-primaryDark text-black px-3 py-1 rounded hover:bg-green-600 dark:hover:bg-green-700">Send</button>
           </div>
-        </div>
-
-        <div class="timeline">
-          <div class="t-item">
-            <div style="display:flex;justify-content:space-between;align-items:center">
-              <div>
-                <div style="font-weight:700">JR Software Developer — BARC</div>
-                <div class="muted" style="font-size:13px">2025 — Present</div>
-              </div>
-              <div class="muted" style="font-size:13px">Full-stack, CodeIgniter</div>
-            </div>
-            <div class="muted" style="margin-top:8px">Building scalable web applications with authentication and responsive UIs.</div>
-          </div>
-
-          <div class="t-item">
-            <div style="display:flex;justify-content:space-between;align-items:center">
-              <div>
-                <div style="font-weight:700">BSc in Information Technology</div>
-                <div class="muted" style="font-size:13px">Graduated</div>
-              </div>
-              <div class="muted" style="font-size:13px">Coursework & projects</div>
-            </div>
-            <div class="muted" style="margin-top:8px">Data structures, DBMS, networking and project management.</div>
-          </div>
-        </div>
+        </form>
       </section>
-
-      <!-- CONTACT -->
-      <section id="contact" class="block" role="region" aria-label="Contact">
-        <div class="section-header">
-          <div>
-            <div class="section-accent"></div>
-            <h2 style="margin:0">Get in touch</h2>
-            <div class="section-sub">Open to Android & full-stack roles, internships, and freelance</div>
-          </div>
-        </div>
-
-        <div class="contact-container" style="display:grid; grid-template-columns:1fr 320px; gap:18px; align-items:start;">
-          <form class="contact-form" id="contactForm" onsubmit="sendMessage(event)" novalidate>
-            <label class="muted">Your name</label>
-            <input id="name" name="name" placeholder="Your name" required />
-
-            <label class="muted mt-2">Email</label>
-            <input id="email" name="email" type="email" placeholder="Email address" required />
-
-            <label class="muted mt-2">Message</label>
-            <textarea id="message" name="message" rows="5" placeholder="Tell me about your project" required></textarea>
-
-            <div style="display:flex; gap:10px; margin-top:12px">
-              <!-- fixed broken/missing button -->
-              <button type="submit" class="btn-primary">Send message</button>
-              <button type="reset" class="btn-ghost">Reset</button>
-            </div>
-          </form>
-
-          <aside class="contact-card">
-            <div style="font-weight:700">Contact</div>
-            <div class="muted" style="margin-top:8px">sharmavikaskumar95@gmail.com</div>
-            <div class="muted" style="margin-top:6px">Open to freelance & full-time</div>
-          </aside>
-        </div>
-      </section>
-
-      <footer class="site-foot">© <span id="year"></span> Vikas Sharma — All rights reserved</footer>
     </main>
   </div>
 
-  <script>
-    // Update footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
+  <footer class="text-center text-gray-500 dark:text-gray-400 mt-6">© <span id="year"></span> Vikas Sharma — Built with care.</footer>
+</div>
 
-    // Mobile menu toggle (fixed and accessible)
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
-    const overlay = document.getElementById('overlay');
+<script>
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-    function setMenuOpen(open) {
-      if (open) {
-        menuToggle.classList.add('active');
-        navLinks.classList.add('active');
-        overlay.classList.add('active');
-        menuToggle.setAttribute('aria-expanded', 'true');
-        overlay.setAttribute('aria-hidden', 'false');
-      } else {
-        menuToggle.classList.remove('active');
-        navLinks.classList.remove('active');
-        overlay.classList.remove('active');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        overlay.setAttribute('aria-hidden', 'true');
-      }
-    }
+  // Fade-in observer
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in-view'); });
+  }, { threshold: 0.2 });
+  fadeEls.forEach(el => observer.observe(el));
 
-    menuToggle.addEventListener('click', () => {
-      const open = !navLinks.classList.contains('active');
-      setMenuOpen(open);
-    });
-    overlay.addEventListener('click', () => setMenuOpen(false));
+  // Theme toggle
+  const themeToggle = document.getElementById('themeToggle');
+  themeToggle.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
+  });
+</script>
 
-    // Smooth reveal for sections using IntersectionObserver
-    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.18 };
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    // Observe .fade elements
-    document.querySelectorAll('.fade').forEach(el => revealObserver.observe(el));
-
-    // SKILLS: animate progress bars + numeric counters with a fast, staggered effect
-    const skillsSection = document.getElementById('skills');
-    const skillsObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          animateSkills();
-          skillsObserver.unobserve(skillsSection);
-        }
-      });
-    }, { threshold: 0.25 });
-
-    skillsObserver.observe(skillsSection);
-
-    function animateSkills() {
-      const skills = Array.from(document.querySelectorAll('.skill'));
-      // base duration: 800ms (change this value if needed)
-      const DURATION = 800;
-      skills.forEach((skill, i) => {
-        const progressBar = skill.querySelector('.progress > div');
-        const target = parseInt(progressBar.getAttribute('data-progress') || skill.dataset.progress || 0, 10);
-        // stagger each bar slightly
-        const delay = i * 100;
-
-        // set transition duration (makes all consistent)
-        progressBar.style.transition = `width ${DURATION}ms cubic-bezier(.2,.9,.3,1) ${delay}ms`;
-        // trigger width after tiny timeout so transition applies
-        setTimeout(() => {
-          progressBar.style.width = target + '%';
-        }, 30);
-
-        // numeric counter (fast)
-        const label = skill.querySelector('.percent');
-        if (label) {
-          animateNumber(label, target, DURATION + delay);
-        }
-      });
-    }
-
-    // animateNumber: animates integer from 0 to 'to' within ms milliseconds
-    function animateNumber(el, to, ms) {
-      const start = performance.now();
-      const from = 0;
-      function step(now) {
-        const t = Math.min((now - start) / ms, 1);
-        const value = Math.round(from + (to - from) * easeOutCubic(t));
-        el.textContent = value + '%';
-        if (t < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    }
-    function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
-
-    // small helper: keyboard accessibility for project cards (Enter key opens)
-    document.querySelectorAll('.proj[tabindex]').forEach(card => {
-      card.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          // example action: show title in alert (replace with real modal/action)
-          const title = card.dataset.title || 'Project';
-          alert(title);
-        }
-      });
-      card.addEventListener('click', () => {
-        const title = card.dataset.title || 'Project';
-        alert(title);
-      });
-    });
-
-    // basic contact form placeholder function
-    function sendMessage(e){
-      e.preventDefault();
-      // simple feedback for demo (replace with real sending logic)
-      const name = document.getElementById('name').value.trim();
-      if(!name) { alert('Please enter your name'); return; }
-      alert('Thanks, ' + name + '! Message sent (demo).');
-      e.target.reset();
-    }
-  </script>
 </body>
 </html>
